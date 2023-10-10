@@ -1,6 +1,6 @@
 import express from 'express';
-import mongoose from 'mongoose';
 import connectDB from '../config/db.js';
+import userRouter from './routes/user.route.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -20,3 +20,5 @@ const startServer = async () => {
 	}
 };
 startServer();
+
+app.use('/api/user', userRouter);
