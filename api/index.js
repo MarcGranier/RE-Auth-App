@@ -1,10 +1,14 @@
 import express from 'express';
 import connectDB from '../config/db.js';
-import userRouter from './routes/user.route.js';
+import userRoutes from './routes/user.route.js';
+import authRoutes from './routes/auth.route.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 connectDB();
 
@@ -21,4 +25,5 @@ const startServer = async () => {
 };
 startServer();
 
-app.use('/api/user', userRouter);
+app.use('/api/user', userRoutes);
+app.use('/api/auth', authRoutes);
